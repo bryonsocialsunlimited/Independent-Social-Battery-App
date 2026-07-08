@@ -1,0 +1,106 @@
+import type { AdminMetric, MembershipPlan } from "@/lib/types";
+
+export const adminMetrics: AdminMetric[] = [
+  { id: "m1", label: "Groups below 3", value: 2, severity: "critical", tab: "Groups" },
+  { id: "m2", label: "Outings at fill risk", value: 3, severity: "critical", tab: "Outings" },
+  { id: "m3", label: "Starting in 24 hours", value: 4, severity: "warning", tab: "Outings" },
+  { id: "m4", label: "Active chat windows", value: 1, severity: "info", tab: "Groups" },
+  { id: "m5", label: "Low feedback flags", value: 5, severity: "warning", tab: "Feedback Flags" },
+  { id: "m6", label: "One-sided friend flags", value: 3, severity: "warning", tab: "Feedback Flags" },
+  { id: "m7", label: "ID reviews pending", value: 7, severity: "critical", tab: "ID Verification" },
+  { id: "m8", label: "Discount apps pending", value: 4, severity: "warning", tab: "Discounted Access" },
+  { id: "m9", label: "No-shows pending review", value: 2, severity: "warning", tab: "Payments/Credits" },
+  { id: "m10", label: "Cancellations needing credit", value: 6, severity: "warning", tab: "Payments/Credits" },
+  { id: "m11", label: "Payment failures", value: 1, severity: "critical", tab: "Payments/Credits" },
+  { id: "m12", label: "Credit liability total", value: "$1,240", severity: "info", tab: "Payments/Credits" },
+  { id: "m13", label: "Boston demand score", value: 87, severity: "info", tab: "City Demand" },
+  { id: "m14", label: "Top category demand", value: "Comedy", severity: "info", tab: "City Demand" },
+];
+
+export const adminTabs = [
+  "Metrics",
+  "Outings",
+  "Users",
+  "Groups",
+  "Feedback Flags",
+  "ID Verification",
+  "Discounted Access",
+  "Payments/Credits",
+  "Rewards",
+  "City Demand",
+  "Settings",
+];
+
+export const membershipPlans: MembershipPlan[] = [
+  {
+    id: "category-pass-movies",
+    name: "Movies Pass",
+    monthlyPrice: 16,
+    categoryId: "movies",
+    description: "Member pricing on all movie outings",
+    savingsLabel: "Save ~$5 per outing",
+    features: [
+      "Discounted movie outing tickets",
+      "1.25× rewards points on movies",
+      "Early access to premiere nights",
+      "Cancel anytime",
+    ],
+  },
+  {
+    id: "category-pass-comedy",
+    name: "Comedy Pass",
+    monthlyPrice: 16,
+    categoryId: "comedy",
+    description: "Member pricing on comedy outings",
+    savingsLabel: "Save ~$6 per outing",
+    features: [
+      "Discounted comedy show tickets",
+      "1.25× rewards points on comedy",
+      "Priority seating requests",
+      "Cancel anytime",
+    ],
+  },
+  {
+    id: "category-pass-sports",
+    name: "Sports Pass",
+    monthlyPrice: 18,
+    categoryId: "sports",
+    description: "Member pricing on sports outings",
+    savingsLabel: "Save ~$7 per outing",
+    features: [
+      "Discounted game tickets",
+      "1.25× rewards points on sports",
+      "Group meetup perks",
+      "Cancel anytime",
+    ],
+  },
+  {
+    id: "category-pass-arts",
+    name: "Performing Arts Pass",
+    monthlyPrice: 18,
+    categoryId: "performing-arts",
+    description: "Member pricing on theater & orchestra outings",
+    savingsLabel: "Save ~$7 per outing",
+    features: [
+      "Discounted theater tickets",
+      "1.25× rewards points on arts",
+      "Pre-show mingle priority",
+      "Cancel anytime",
+    ],
+  },
+  {
+    id: "all-access",
+    name: "All Access Pass",
+    monthlyPrice: 60,
+    description: "Best pricing on every category plus rewards multipliers",
+    savingsLabel: "Save up to $15 per outing",
+    popular: true,
+    features: [
+      "Best price on all outing categories",
+      "1.5× rewards points everywhere",
+      "Priority waitlist placement",
+      "$10 monthly credit",
+      "Cancel anytime",
+    ],
+  },
+];
