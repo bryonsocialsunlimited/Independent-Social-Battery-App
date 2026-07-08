@@ -1,5 +1,5 @@
 import type { Conversation } from "@/lib/types";
-import { Card } from "@/components/ui/Card";
+import { AppCard } from "@/components/cards/AppCard";
 import { Badge } from "@/components/ui/Badge";
 import { Lock, MessageCircle, Users } from "lucide-react";
 import { cn } from "@/lib/utils/cn";
@@ -12,7 +12,7 @@ export function ConversationCard({ conversation }: ConversationCardProps) {
   const { type, title, subtitle, status, lastMessage, unreadCount } = conversation;
 
   return (
-    <Card className="transition-all hover:bg-white/6 active:scale-[0.98] cursor-pointer">
+    <AppCard variant="interactive">
       <div className="flex items-start gap-3">
         <div
           className={cn(
@@ -51,6 +51,6 @@ export function ConversationCard({ conversation }: ConversationCardProps) {
           </div>
         </div>
       </div>
-    </Card>
+    </AppCard>
   );
 }

@@ -5,7 +5,7 @@ import { useParams, notFound } from "next/navigation";
 import Link from "next/link";
 import { getOutingById, getCategoryById } from "@/lib/mock-data";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { PricingCard } from "@/components/outings/PricingCard";
+import { PricingCard } from "@/components/cards";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";

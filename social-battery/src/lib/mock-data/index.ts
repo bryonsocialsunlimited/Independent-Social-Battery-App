@@ -2,5 +2,8 @@ export * from "./cities";
 export * from "./categories";
 export * from "./outings";
 export * from "./users";
+export * from "./groups";
 export * from "./messages";
 export * from "./admin";
+export * from "./feedback";
+export * from "./rewards";

@@ -160,4 +160,67 @@ export interface MembershipPlan {
   name: string;
   monthlyPrice: number;
   description: string;
+  features: string[];
+  categoryId?: string;
+  savingsLabel?: string;
+  popular?: boolean;
+}
+
+export type FeedbackFlagType =
+  | "low_rating"
+  | "one_sided_friend"
+  | "no_show"
+  | "safety_concern"
+  | "group_conflict";
+
+export type FeedbackFlagStatus = "open" | "reviewing" | "resolved" | "dismissed";
+
+export interface FeedbackFlag {
+  id: string;
+  type: FeedbackFlagType;
+  status: FeedbackFlagStatus;
+  outingId: string;
+  outingTitle: string;
+  reportedUserId: string;
+  reportedUserName: string;
+  reporterUserId: string;
+  reporterUserName: string;
+  summary: string;
+  rating?: number;
+  createdAt: string;
+  priority: "high" | "medium" | "low";
+}
+
+export interface RewardTier {
+  id: string;
+  name: string;
+  minPoints: number;
+  multiplier: number;
+  perks: string[];
+}
+
+export interface RewardRedemption {
+  id: string;
+  title: string;
+  pointsCost: number;
+  description: string;
+  category: "credit" | "upgrade" | "perk";
+  available: boolean;
+}
+
+export interface RewardActivity {
+  id: string;
+  label: string;
+  points: number;
+  date: string;
+  type: "earned" | "redeemed";
+}
+
+export interface MockUser {
+  id: string;
+  firstName: string;
+  cityId: string;
+  membershipType: UserProfile["membershipType"];
+  points: number;
+  outingsAttended: number;
 }

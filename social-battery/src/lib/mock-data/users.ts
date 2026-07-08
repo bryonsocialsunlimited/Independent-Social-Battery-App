@@ -1,4 +1,15 @@
-import type { Group, UserProfile, UserBooking } from "@/lib/types";
+import type { Group, MockUser, UserProfile, UserBooking } from "@/lib/types";
+
+export const mockUsers: MockUser[] = [
+  { id: "user-1", firstName: "Alex", cityId: "boston", membershipType: "none", points: 240, outingsAttended: 3 },
+  { id: "user-2", firstName: "Jordan", cityId: "boston", membershipType: "category_pass", points: 180, outingsAttended: 2 },
+  { id: "user-3", firstName: "Sam", cityId: "boston", membershipType: "all_access", points: 520, outingsAttended: 6 },
+  { id: "user-4", firstName: "Riley", cityId: "boston", membershipType: "none", points: 95, outingsAttended: 1 },
+  { id: "user-5", firstName: "Morgan", cityId: "boston", membershipType: "category_pass", points: 310, outingsAttended: 4 },
+  { id: "user-6", firstName: "Casey", cityId: "boston", membershipType: "none", points: 140, outingsAttended: 2 },
+  { id: "user-7", firstName: "Taylor", cityId: "boston", membershipType: "all_access", points: 890, outingsAttended: 8 },
+  { id: "user-8", firstName: "Drew", cityId: "boston", membershipType: "none", points: 60, outingsAttended: 1 },
+];
 
 export const currentUser: UserProfile = {
   id: "user-1",
@@ -12,59 +23,6 @@ export const currentUser: UserProfile = {
   discountedAccessStatus: "not_applied",
   upcomingOutingsCount: 2,
   pastOutingsCount: 3,
-};
-
-export const sampleGroup: Group = {
-  id: "group-1",
-  outingId: "outing-1",
-  status: "confirmed",
-  minSize: 3,
-  maxSize: 6,
-  chatOpenAt: "2026-07-12T18:00:00",
-  chatCloseAt: "2026-07-12T22:30:00",
-  members: [
-    {
-      id: "user-1",
-      firstName: "Alex",
-      showPhoto: true,
-      photoUrl: undefined,
-      publicPrompts: [
-        { promptKey: "occupation", label: "Occupation", answer: "Product designer" },
-        { promptKey: "fun_fact", label: "A fun fact", answer: "I once hiked all 48 NH peaks" },
-        { promptKey: "last_movie", label: "Last movie you saw", answer: "Dune: Part Two" },
-      ],
-    },
-    {
-      id: "user-2",
-      firstName: "Jordan",
-      showPhoto: false,
-      publicPrompts: [
-        { promptKey: "sports", label: "Sports interests", answer: "Pick-up basketball & rowing" },
-        { promptKey: "dream_job", label: "Dream job", answer: "Running a community bookstore" },
-        { promptKey: "art_types", label: "Types of art you like", answer: "Street photography" },
-      ],
-    },
-    {
-      id: "user-3",
-      firstName: "Sam",
-      showPhoto: true,
-      publicPrompts: [
-        { promptKey: "work_preference", label: "Computers, art, or people?", answer: "People — I'm a nurse" },
-        { promptKey: "last_trip", label: "Last trip you went on", answer: "Portland, ME for a food weekend" },
-        { promptKey: "fun_fact", label: "A fun fact", answer: "I speak three languages" },
-      ],
-    },
-    {
-      id: "user-4",
-      firstName: "Riley",
-      showPhoto: false,
-      publicPrompts: [
-        { promptKey: "occupation", label: "Occupation", answer: "Software engineer" },
-        { promptKey: "last_movie", label: "Last movie you saw", answer: "Everything Everywhere" },
-        { promptKey: "sports", label: "Sports interests", answer: "Skiing in winter, tennis in summer" },
-      ],
-    },
-  ],
 };
 
 export const userBookings: UserBooking[] = [
@@ -96,4 +54,30 @@ export const userBookings: UserBooking[] = [
     checkedIn: true,
     feedbackComplete: true,
   },
+  {
+    id: "booking-4",
+    outingId: "outing-10",
+    status: "upcoming",
+    groupStatus: "confirmed",
+    ticketStatus: "confirmed",
+    checkedIn: false,
+    feedbackComplete: false,
+    chatOpensIn: "5 hours",
+  },
+  {
+    id: "booking-5",
+    outingId: "outing-4",
+    status: "past",
+    groupStatus: "confirmed",
+    ticketStatus: "delivered",
+    checkedIn: true,
+    feedbackComplete: false,
+  },
 ];
+
+export function getUserById(id: string): MockUser | undefined {
+  return mockUsers.find((u) => u.id === id);
+}
+
+// Re-export sampleGroup from groups for backward compatibility
+export { sampleGroup } from "./groups";

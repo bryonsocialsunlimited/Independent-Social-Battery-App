@@ -47,6 +47,34 @@ Open [http://localhost:3000](http://localhost:3000).
 
 On outing detail, enter `SOCIALBETA` for $0 mock checkout.
 
+## Architecture
+
+```
+src/
+├── app/api/v1/          # REST stubs returning mock data (swap for Supabase later)
+├── components/cards/    # Reusable AppCard system (outing, group, pricing, reward, admin)
+├── components/motion/   # Page transitions & stagger animations
+├── lib/mock-data/       # Rich prototype fixtures
+├── lib/services/        # Data access layer (currently mock-backed)
+├── lib/api/client.ts    # Typed fetch client for /api/v1/*
+└── lib/routes.ts        # Central route map
+```
+
+### API routes (mock)
+
+| Endpoint | Description |
+|---|---|
+| `GET /api/v1/outings` | List outings (`?cityId`, `?categoryId`) |
+| `GET /api/v1/outings/[id]` | Outing detail |
+| `GET /api/v1/users/me` | Current user profile |
+| `GET /api/v1/users/me/bookings` | User bookings |
+| `GET /api/v1/groups?outingId=` | Group for an outing |
+| `GET /api/v1/conversations` | All conversations |
+| `GET /api/v1/memberships` | Membership plans |
+| `GET /api/v1/rewards` | Rewards tiers, redemptions, activity |
+| `GET /api/v1/admin/metrics` | Admin dashboard metrics |
+| `GET /api/v1/admin/feedback-flags` | Feedback flag queue |
+
 ## Next phases
 
 See `Social_Battery_Codex_Build_Spec_v1.md` for Phases 2–6: Supabase schema, real auth, Stripe checkout, grouping engine, feedback/friends, full admin.

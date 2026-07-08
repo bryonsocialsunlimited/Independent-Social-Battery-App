@@ -1,4 +1,6 @@
+import { MobileShell } from "@/components/layout/MobileShell";
 import { BottomNav } from "@/components/layout/BottomNav";
+import { PageTransition } from "@/components/motion/PageTransition";
 
 export default function MainLayout({
   children,
@@ -6,9 +8,11 @@ export default function MainLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="mx-auto min-h-dvh w-full max-w-lg">
-      <main className="safe-bottom px-5 pt-6 pb-4">{children}</main>
+    <MobileShell>
+      <main className="safe-bottom px-5 pt-2 pb-4">
+        <PageTransition>{children}</PageTransition>
+      </main>
       <BottomNav />
-    </div>
+    </MobileShell>
   );
 }

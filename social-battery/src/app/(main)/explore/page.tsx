@@ -5,7 +5,8 @@ import { useSearchParams } from "next/navigation";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { CitySelector } from "@/components/ui/CitySelector";
 import { CategoryCard } from "@/components/outings/CategoryCard";
-import { OutingCard } from "@/components/outings/OutingCard";
+import { OutingCard } from "@/components/cards";
+import { StaggerList, StaggerItem } from "@/components/motion/PageTransition";
 import { Button } from "@/components/ui/Button";
 import { categories, outings, currentUser } from "@/lib/mock-data";
 import { Sparkles } from "lucide-react";
@@ -54,9 +55,13 @@ function ExploreContent() {
         </h2>
         <div className="space-y-4">
           {filteredOutings.length > 0 ? (
-            filteredOutings.map((outing) => (
-              <OutingCard key={outing.id} outing={outing} />
-            ))
+            <StaggerList className="space-y-4">
+              {filteredOutings.map((outing) => (
+                <StaggerItem key={outing.id}>
+                  <OutingCard outing={outing} />
+                </StaggerItem>
+              ))}
+            </StaggerList>
           ) : (
             <p className="text-sm text-muted text-center py-8">
               No outings found for this filter.
