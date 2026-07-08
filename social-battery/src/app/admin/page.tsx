@@ -1,0 +1,102 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { adminMetrics, adminTabs } from "@/lib/mock-data";
+import { Card } from "@/components/ui/Card";
+import { Badge } from "@/components/ui/Badge";
+import { cn } from "@/lib/utils/cn";
+import { ArrowLeft, AlertTriangle } from "lucide-react";
+
+export default function AdminDashboardPage() {
+  const [activeTab, setActiveTab] = useState("Metrics");
+
+  const critical = adminMetrics.filter((m) => m.severity === "critical");
+  const warning = adminMetrics.filter((m) => m.severity === "warning");
+  const info = adminMetrics.filter((m) => m.severity === "info");
+
+  return (
+    <div className="min-h-dvh bg-background">
+      <div className="mx-auto max-w-4xl px-5 py-8">
+        <Link href="/profile" className="inline-flex items-center gap-1 text-sm text-muted mb-6 hover:text-foreground">
+          <ArrowLeft className="h-4 w-4" /> Back to app
+        </Link>
+
+        <div className="flex items-center gap-3 mb-2">
+          <h1 className="text-2xl font-bold">Admin Dashboard</h1>
+          <Badge variant="warning">Placeholder</Badge>
+        </div>
+        <p className="text-sm text-muted mb-8">High-need metrics and action queues first</p>
+
+        {/* Tabs */}
+        <div className="flex gap-2 overflow-x-auto scrollbar-hide mb-8 pb-1">
+          {adminTabs.map((tab) => (
+            <button
+              key={tab}
+              onClick={() => setActiveTab(tab)}
+              className={cn(
+                "shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-all",
+                activeTab === tab
+                  ? "bg-purple-600/30 text-purple-200 ring-1 ring-purple-500/40"
+                  : "glass-panel text-muted hover:text-foreground"
+              )}
+            >
+              {tab}
+            </button>
+          ))}
+        </div>
+
+        {activeTab === "Metrics" ? (
+          <>
+            {/* Critical metrics first */}
+            <section className="mb-8">
+              <div className="flex items-center gap-2 mb-4">
+                <AlertTriangle className="h-5 w-5 text-red-400" />
+                <h2 className="text-lg font-semibold text-red-300">Critical — act now</h2>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {critical.map((metric) => (
+                  <Card key={metric.id} className="border border-red-500/20">
+                    <p className="text-2xl font-bold">{metric.value}</p>
+                    <p className="text-xs text-muted mt-1">{metric.label}</p>
+                  </Card>
+                ))}
+              </div>
+            </section>
+
+            <section className="mb-8">
+              <h2 className="text-lg font-semibold text-amber-300 mb-4">Warning</h2>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {warning.map((metric) => (
+                  <Card key={metric.id} className="border border-amber-500/20">
+                    <p className="text-2xl font-bold">{metric.value}</p>
+                    <p className="text-xs text-muted mt-1">{metric.label}</p>
+                  </Card>
+                ))}
+              </div>
+            </section>
+
+            <section>
+              <h2 className="text-lg font-semibold text-muted mb-4">Info & demand</h2>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                {info.map((metric) => (
+                  <Card key={metric.id}>
+                    <p className="text-2xl font-bold">{metric.value}</p>
+                    <p className="text-xs text-muted mt-1">{metric.label}</p>
+                  </Card>
+                ))}
+              </div>
+            </section>
+          </>
+        ) : (
+          <Card className="text-center py-16">
+            <p className="text-muted">
+              <span className="font-medium text-foreground">{activeTab}</span> management
+              coming in Phase 6. Metrics are live on the Metrics tab.
+            </p>
+          </Card>
+        )}
+      </div>
+    </div>
+  );
+}
